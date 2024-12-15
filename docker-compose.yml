@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  main:
+    build: .
+    ports:
+      - "8080:8080"
+  user_service:
+    build: ./usermanager
+    ports:
+      - "50052:50052"
+  payment_service:
+    build: ./ekassa
+    ports:
+      - "50053:50053"
