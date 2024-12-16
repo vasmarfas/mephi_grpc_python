@@ -37,14 +37,14 @@ def run():
     with grpc.insecure_channel(f"{server_addr}:50052") as channel:
         stub = usermanager_pb2_grpc.UserServiceStub(channel)
         response = stub.GetUser(usermanager_pb2.GetUserRequest(user_id='61'))
-    print("Greeter client received: " + str(response))
+    print("CreateUserRequest client received: " + str(response))
 
 def create_user(name: str, email: str):
  with grpc.insecure_channel(f"{server_addr}:50052") as channel:
   from usermanager import usermanager_pb2_grpc, usermanager_pb2
   stub = usermanager_pb2_grpc.UserServiceStub(channel)
   response = stub.CreateUser(usermanager_pb2.CreateUserRequest(name=name, email=email))
- out = ("CreateUserRequest client received: " + str(response))
+ out = ("Success: \n" + str(response))
  return out
 
 def get_user(userid: str):
@@ -52,7 +52,7 @@ def get_user(userid: str):
   from usermanager import usermanager_pb2_grpc, usermanager_pb2
   stub = usermanager_pb2_grpc.UserServiceStub(channel)
   response = stub.GetUser(usermanager_pb2.GetUserRequest(userid))
- out = ("Greeter client received: " + str(response))
+ out = ("Success: \n" + str(response))
 
  return out
 

@@ -31,14 +31,14 @@ def run():
     with grpc.insecure_channel(f"{server_addr}:50053") as channel:
         stub = ekassa_pb2_grpc.KassaServiceStub(channel)
         response = stub.CreatePayment(ekassa_pb2.CreatePaymentRequest(payment_sum="123", email="example@mail.ru"))
-    print("CreateUserRequest client received: " + str(response))
+    print("CreatePaymentRequest client received: " + str(response))
 
 def create_payment(payment_sum: str, email: str):
  with grpc.insecure_channel(f"{server_addr}:50053") as channel:
   from ekassa import ekassa_pb2_grpc, ekassa_pb2
   stub = ekassa_pb2_grpc.KassaServiceStub(channel)
   response = stub.CreatePayment(ekassa_pb2.CreatePaymentRequest(payment_sum=payment_sum, email=email))
- out = ("CreateUserRequest client received: " + str(response))
+ out = ("Success: \n" + str(response))
 
  return out
 
